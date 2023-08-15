@@ -29,6 +29,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
@@ -38,6 +41,8 @@ import com.example.profilejetpack_compose.ui.theme.ProfileJetpackComposeTheme
 val fontfamily = R.font.delagothicone_regular
 
 class MainActivity : ComponentActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -78,6 +83,11 @@ fun ProfileScreen() {
 
 @Composable
 fun ProfileImage() {
+
+    val fontfamily1 = FontFamily(
+        Font(R.font.delagothicone_regular)
+    )
+
     val imageUri = rememberSaveable{ mutableStateOf("") }
     val painter = rememberImagePainter(
         if(imageUri.value.isEmpty())
@@ -101,7 +111,7 @@ fun ProfileImage() {
                 contentScale = ContentScale.Crop
                 )
         }
-        Text(text = "Change Profile Picture", modifier = Modifier.padding(10.dp))
+        Text(text = "Change Profile Picture", modifier = Modifier.padding(10.dp),fontFamily = fontfamily1, fontWeight = FontWeight.Medium)
     }
 }
 
