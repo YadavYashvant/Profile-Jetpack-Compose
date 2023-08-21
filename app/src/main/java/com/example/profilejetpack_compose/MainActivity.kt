@@ -12,10 +12,13 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -73,9 +76,12 @@ fun ProfileScreen() {
         ) {
         Row(modifier = Modifier
             .fillMaxWidth()
-            .padding(6.dp),
+            .padding(6.dp)
+            .height(40.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
+
+
             /*
             Text(text = "Cancel", modifier = Modifier
                 .clickable { }
@@ -85,10 +91,15 @@ fun ProfileScreen() {
                 , fontWeight = FontWeight.Bold
             )
             */
+
+
             ElevatedButton(onClick = { /*TODO*/ }, modifier = Modifier
+                .fillMaxHeight()
             ) {
                 Text(text = "Cancel")
             }
+
+
             /*
             Text(text = "Save", modifier = Modifier
                 .clickable { }
@@ -96,15 +107,16 @@ fun ProfileScreen() {
                 .background(color = Color.Magenta)
                 ,color = Color.White
                 , fontWeight = FontWeight.Bold)
-
              */
+
+
             OutlinedButton(onClick = { /*TODO*/ }, modifier = Modifier
+                .fillMaxHeight()
             ) {
                 Text(text = "Save")
             }
 
         }
-
         ProfileImage()
         
     }
