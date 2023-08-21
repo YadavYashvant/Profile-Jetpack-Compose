@@ -7,6 +7,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -19,15 +20,23 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
+import androidx.compose.material3.ElevatedButton
+import androidx.compose.material3.ExtendedFloatingActionButton
+import androidx.compose.material3.FilledIconButton
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.Font
@@ -60,20 +69,40 @@ class MainActivity : ComponentActivity() {
 fun ProfileScreen() {
     Column(modifier = Modifier
         .verticalScroll(rememberScrollState())
-        .padding(10.dp)) {
+        .padding(8.dp)
+        ) {
         Row(modifier = Modifier
             .fillMaxWidth()
-            .padding(10.dp),
+            .padding(6.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            
+            /*
             Text(text = "Cancel", modifier = Modifier
                 .clickable { }
-                .padding(10.dp))
+                .padding(20.dp)
+                .background(color = Color.Black)
+            ,color = Color.White
+                , fontWeight = FontWeight.Bold
+            )
+            */
+            ElevatedButton(onClick = { /*TODO*/ }, modifier = Modifier
+            ) {
+                Text(text = "Cancel")
+            }
+            /*
             Text(text = "Save", modifier = Modifier
                 .clickable { }
-                .padding(10.dp))
-            
+                .padding(20.dp)
+                .background(color = Color.Magenta)
+                ,color = Color.White
+                , fontWeight = FontWeight.Bold)
+
+             */
+            OutlinedButton(onClick = { /*TODO*/ }, modifier = Modifier
+            ) {
+                Text(text = "Save")
+            }
+
         }
 
         ProfileImage()
@@ -98,7 +127,7 @@ fun ProfileImage() {
     )
     
     Column(modifier = Modifier
-        .padding(10.dp)
+        .padding(6.dp)
         .fillMaxWidth(),
     horizontalAlignment = Alignment.CenterHorizontally) {
         Card(shape = CircleShape,
@@ -110,14 +139,16 @@ fun ProfileImage() {
                 .wrapContentSize()
                 .clickable {
                     val intent = Intent(
-                        Intent.ACTION_VIEW, Uri.parse("content://media/internal/images/media"))
+                        Intent.ACTION_VIEW, Uri.parse("content://media/internal/images/media")
+                    )
 
                     mcontext.startActivity(intent)
+                    //startActivityforResult, to be executed
                 },
                 contentScale = ContentScale.Crop
                 )
         }
-        Text(text = "Change Profile Picture", modifier = Modifier.padding(10.dp),fontFamily = fontfamily1, fontWeight = FontWeight.Medium)
+        Text(text = "Profile Picture", modifier = Modifier.padding(10.dp),fontFamily = fontfamily1, fontWeight = FontWeight.Medium)
     }
 }
 
