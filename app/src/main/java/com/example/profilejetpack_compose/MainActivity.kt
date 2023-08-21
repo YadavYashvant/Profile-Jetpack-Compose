@@ -1,10 +1,11 @@
 package com.example.profilejetpack_compose
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.provider.ContactsContract.Profile
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -28,7 +29,6 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -41,7 +41,6 @@ import com.example.profilejetpack_compose.ui.theme.ProfileJetpackComposeTheme
 val fontfamily = R.font.delagothicone_regular
 
 class MainActivity : ComponentActivity() {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -91,7 +90,7 @@ fun ProfileImage() {
     val imageUri = rememberSaveable{ mutableStateOf("") }
     val painter = rememberImagePainter(
         if(imageUri.value.isEmpty())
-            R.drawable.person_pfp
+            R.drawable.profilepif_github
         else
             imageUri.value
     )
@@ -107,7 +106,10 @@ fun ProfileImage() {
             ) {
             Image(painter = painter, contentDescription = null, modifier = Modifier
                 .wrapContentSize()
-                .clickable { },
+                .clickable {
+                    val intent = Intent(
+                        Intent.ACTION_VIEW, Uri.parse("content://media/internal/images/media"))
+                },
                 contentScale = ContentScale.Crop
                 )
         }
