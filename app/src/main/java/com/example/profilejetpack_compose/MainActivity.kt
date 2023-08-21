@@ -29,6 +29,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -82,6 +83,7 @@ fun ProfileScreen() {
 
 @Composable
 fun ProfileImage() {
+    val mcontext = LocalContext.current
 
     val fontfamily1 = FontFamily(
         Font(R.font.delagothicone_regular)
@@ -109,6 +111,8 @@ fun ProfileImage() {
                 .clickable {
                     val intent = Intent(
                         Intent.ACTION_VIEW, Uri.parse("content://media/internal/images/media"))
+
+                    mcontext.startActivity(intent)
                 },
                 contentScale = ContentScale.Crop
                 )
