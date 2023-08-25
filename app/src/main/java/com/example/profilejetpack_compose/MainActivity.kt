@@ -84,7 +84,6 @@ class MainActivity : ComponentActivity() {
             ProfileJetpackComposeTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    ProfileScreen()
                     Loaderbouncy()
                 }
             }
@@ -104,15 +103,13 @@ fun ProfileScreen() {
             .height(60.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            ElevatedButton(onClick = { /*TODO*/
-                                     
-                                     }, modifier = Modifier
+            ElevatedButton(onClick = {   }, modifier = Modifier
                 .fillMaxHeight()
             ) {
                 Text(text = "Cancel")
             }
 
-            OutlinedButton(onClick = { /*TODO*/ }, modifier = Modifier
+            OutlinedButton(onClick = {   }, modifier = Modifier
                 .fillMaxHeight()
             ) {
                 Text(text = "Save")
@@ -176,13 +173,13 @@ fun Loaderbouncy() {
      }
 
     LaunchedEffect("Loader") {
-        delay(400)
+        delay(500)
         yOffset.animateTo(.5f,bouncyAnimationSpecific)
         scale.animateTo(3f,bouncyAnimationSpecific)
 
-        delay(500)
+        delay(400)
         scale.animateTo(10f,bouncyAnimationSpecific)
-        delay(500)
+        delay(400)
         scale.animateTo(50f,bouncyAnimationSpecific)
     }
     val size =  remember{
@@ -206,13 +203,15 @@ fun Loaderbouncy() {
                     translationY = yOffset.value * size.value.height
                 }
         )
+        ProfileScreen()
+
     }
 }
 
 @Composable
 fun GradientCircle(modifier: Modifier = Modifier) {
     val brush = remember{
-        Brush.verticalGradient(listOf(Color(0xFFF56E34), Color(0xFF234EDA)))
+        Brush.horizontalGradient(listOf( Color.Cyan, Color.Yellow))
     }
 
     Canvas(modifier = modifier) {
@@ -221,8 +220,8 @@ fun GradientCircle(modifier: Modifier = Modifier) {
 }
 
 val bouncyAnimationSpecific: SpringSpec<Float> = spring(
-    dampingRatio = Spring.DampingRatioMediumBouncy,
-    stiffness = Spring.StiffnessVeryLow
+    dampingRatio = Spring.DampingRatioHighBouncy,
+    stiffness = Spring.StiffnessLow
 )
 
 
